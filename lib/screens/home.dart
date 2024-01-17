@@ -7,10 +7,9 @@ import 'package:flutter/material.dart';
 String defaultCurrent = "USD";
 String defaultConvert = "UZS";
 List<Currensy> currensyCopy = [];
-List<Widget> pages = [const Calculate(), const AllCurrensy()];
 
 class Home extends StatefulWidget {
-  static const routeName = "/";
+  static const routeName = "/home";
   const Home({super.key});
 
   @override
@@ -20,6 +19,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    List<Widget> pages = [const Calculate(), const AllCurrensy()];
     return SafeArea(
       child: Scaffold(
         body: PageView.builder(

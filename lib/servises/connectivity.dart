@@ -3,10 +3,12 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:exchange/screens/home.dart';
+import 'package:exchange/screens/offline_screen.dart';
 import 'package:flutter/material.dart';
 
-
 class ConnectivityCheck extends StatefulWidget {
+  static const String routeName = "/";
   const ConnectivityCheck({super.key});
 
   @override
@@ -23,7 +25,8 @@ class _ConnectivityCheckState extends State<ConnectivityCheck> {
     super.initState();
     _connectivity = Connectivity();
     _checkConnection();
-    _connectivitySubscription = _connectivity.onConnectivityChanged.listen((result) {
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen((result) {
       _checkConnection();
     });
   }
@@ -47,16 +50,6 @@ class _ConnectivityCheckState extends State<ConnectivityCheck> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            _isConnected ? 'Connected to the internet' : 'No internet connection',
-            style: TextStyle(fontSize: 20),
-          ),
-        ],
-      ),
-    );
+    return _isConnected ? const Home() : const Offline();
   }
 }
